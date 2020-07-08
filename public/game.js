@@ -1,13 +1,15 @@
-const cnv = document.querySelector("canvas")
-const ctx = cnv.getContext("2d")
-const currentPlayerId = 'player1'
-
-function createGame() {
+export default function createGame() {
 
     const state = {
 
         players: {},
-        fruits: {}
+        fruits: {},
+        screen: {
+
+            width: 10,
+            height: 10
+
+        }
 
     }
 
@@ -58,7 +60,7 @@ function createGame() {
 
     }
 
-    function MovePlayer(command) {
+    function movePlayer(command) {
 
         const acceptedKeys = {
 
@@ -69,12 +71,12 @@ function createGame() {
             },
             ArrowDown(player) {
 
-                player.y = Math.min(player.y + 1, cnv.height - 1)
+                player.y = Math.min(player.y + 1, state.screen.height - 1)
 
             },
             ArrowRight(player) {
 
-                player.x = Math.min(player.x + 1, cnv.width - 1)
+                player.x = Math.min(player.x + 1, state.screen.width - 1)
 
             },
             ArrowLeft(player) {
@@ -108,7 +110,7 @@ function createGame() {
 
             if (player.x === fruit.x && player.y === fruit.y) {
 				
-                removeFruit(fruitId)
+                removeFruit({fruitId: fruitId})
 
             }
 
@@ -122,87 +124,9 @@ function createGame() {
         removeFruit,
         addPlayer,
         removePlayer,
-        MovePlayer,
+        movePlayer,
         state
 
     }
-
-}
-
-const game = createGame()
-const keyboardListener = createKeyboardListener()
-keyboardListener.subscribe(game.MovePlayer)
-
-function createKeyboardListener() {
-
-    const state = {
-
-        observers: []
-
-    }
-
-    function subscribe(observerFunction) {
-
-        state.observers.push(observerFunction)
-
-    }
-
-    function notifyAll(command) {
-
-        for (const observerFunction of state.observers) {
-
-            observerFunction(command)
-
-        }
-
-    }
-
-    document.addEventListener('keydown', handleKeydown)
-
-    function handleKeydown(event) {
-
-        const keyPressed = event.key
-        const command = {
-
-            playerId: 'player1',
-            keyPressed
-
-        }
-
-        notifyAll(command)
-
-    }
-
-    return {
-
-        subscribe
-        
-    }
-
-}
-
-renderScreen()
-
-function renderScreen() {
-
-    ctx.fillStyle = 'white'
-    ctx.clearRect(0, 0, 10, 10)
-
-    for (const playerId in game.state.players) {
-
-        const player = game.state.players[playerId]
-        ctx.fillStyle = 'black'
-        ctx.fillRect(player.x, player.y, 1, 1)
-
-    }
-    for (const fruitId in game.state.fruits) {
-
-        const fruit = game.state.fruits[fruitId]
-        ctx.fillStyle = 'green'
-        ctx.fillRect(fruit.x, fruit.y, 1, 1)
-
-    }
-
-    requestAnimationFrame(renderScreen)
 
 }
