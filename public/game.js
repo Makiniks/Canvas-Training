@@ -33,7 +33,10 @@ export default function createGame() {
 
     function setState(newState) {
 
+        console.log(newState)
+        console.log(state)
         Object.assign(state, newState)
+        console.log(state)
 
     }
 
