@@ -6,6 +6,7 @@
 		<meta charset = "utf-8">
 		<title>Colisão</title>
 		<link rel = "stylesheet" href = "Estilo.css">
+        <script src = "/socket.io/socket.io.js"></script>
 		
 	</head>
 	<body>
@@ -30,8 +31,15 @@
         const screen = document.getElementById('screen')
         renderScreen(screen, game, requestAnimationFrame)
 
-        game.addPlayer({playerId: 'player1', playerX: 1, playerY: 1})
-        game.addFruit({fruitId: 'fruit1', fruitX: 3, fruitY: 5})
+        const socket = io()
+
+        socket.on('connection', () => {
+
+            const playerId = socket.id
+
+            console.log(`Player connected on Client with id: ${playerId}`)
+
+        })
 
     </script>
 </html>

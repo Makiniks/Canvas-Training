@@ -15,7 +15,8 @@
   "author": "Makiniks",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
   },
   "bugs": {
     "url": "https://github.com/Makiniks/Canvas-Training/issues"
