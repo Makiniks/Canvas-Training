@@ -13,6 +13,24 @@ export default function createGame() {
 
     }
 
+    const observers = []
+
+    function subscribe(observerFunction) {
+
+        observers.push(observerFunction)
+
+    }
+
+    function notifyAll(command) {
+
+        for (const observerFunction of observers) {
+
+            observerFunction(command)
+
+        }
+
+    }
+
     function setState(newState) {
 
         Object.assign(state, newState)
@@ -31,6 +49,15 @@ export default function createGame() {
             y: playerY
 
         }
+
+        notifyAll({
+
+            type: 'add-player',
+            playerId: playerId,
+            playerX: playerX,
+            playerY: playerY
+
+        })
 
     }
 
@@ -132,7 +159,8 @@ export default function createGame() {
         removePlayer,
         movePlayer,
         state,
-        setState
+        setState,
+        subscribe
 
     }
 

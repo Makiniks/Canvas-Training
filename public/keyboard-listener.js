@@ -6,22 +6,6 @@ export default function createKeyboardListener(document) {
 
     }
 
-    function subscribe(observerFunction) {
-
-        state.observers.push(observerFunction)
-
-    }
-
-    function notifyAll(command) {
-
-        for (const observerFunction of state.observers) {
-
-            observerFunction(command)
-
-        }
-
-    }
-
     document.addEventListener('keydown', handleKeydown)
 
     function handleKeydown(event) {
