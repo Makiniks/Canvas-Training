@@ -18,13 +18,13 @@ export default function createKeyboardListener(document) {
 
         }
 
-        notifyAll(command)
+        
 
     }
 
     return {
 
-        subscribe
+        
         
     }
 
