@@ -36,6 +36,7 @@ export default function createKeyboardListener(document) {
         const keyPressed = event.key
         const command = {
 
+            type: 'move-player',
             playerId: state.playerId,
             keyPressed
 

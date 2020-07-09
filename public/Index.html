@@ -28,14 +28,13 @@
         const keyboardListener = createKeyboardListener(document)
         keyboardListener.subscribe(game.movePlayer)
 
-        const screen = document.getElementById('screen')
-        renderScreen(screen, game, requestAnimationFrame)
-
         const socket = io()
 
         socket.on('connection', () => {
 
             const playerId = socket.id
+            const screen = document.getElementById('screen')
+            renderScreen(screen, game, requestAnimationFrame, playerId)
 
         })
 
@@ -46,13 +45,16 @@
             game.setState(state)
             keyboardListener.registerPlayerId(playerId)
             keyboardListener.subscribe(game.movePlayer)
-            console.log('carrega. . .')
+            keyboardListener.subscribe((command) => {
+
+                socket.emit('move-player', command)
+
+            })
 
         })
 
         socket.on('add-player', (command) => {
 
-            console.log(`Receiving ${command.type} -> ${command.playerId}`)
             game.addPlayer(command)
 
         })
@@ -60,6 +62,24 @@
         socket.on('remove-player', (command) => {
 
             game.removePlayer(command)
+
+        })
+
+        socket.on('move-player', (command) => {
+
+            const playerId = socket.id
+
+            if (playerId !== command.playerId) {
+
+                game.movePlayer(command)
+
+            }
+
+        })
+
+        socket.on('add-fruit', (command) => {
+
+            game.addFruit(command)
 
         })
 
