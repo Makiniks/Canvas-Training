@@ -41,10 +41,7 @@ export default function createGame() {
 
     function setState(newState) {
 
-        console.log(newState)
-        console.log(state)
         Object.assign(state, newState)
-        console.log(state)
 
     }
 
@@ -117,6 +114,13 @@ export default function createGame() {
 		console.log("remover: " + fruitId)
 
         delete state.fruits[fruitId]
+
+        notifyAll({
+
+            type: 'remove-fruit',
+            fruitId: fruitId
+
+        })
 
     }
 
