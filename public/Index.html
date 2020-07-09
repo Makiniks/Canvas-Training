@@ -30,7 +30,7 @@
 
         const socket = io()
 
-        socket.on('connection', () => {
+        socket.on('connect', () => {
 
             const playerId = socket.id
             const screen = document.getElementById('screen')
