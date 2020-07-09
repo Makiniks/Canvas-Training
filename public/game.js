@@ -111,7 +111,6 @@ export default function createGame() {
     function removeFruit(command) {
 
         const fruitId = command.fruitId
-		console.log("remover: " + fruitId)
 
         delete state.fruits[fruitId]
 
