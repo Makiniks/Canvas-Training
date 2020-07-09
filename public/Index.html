@@ -45,11 +45,6 @@
             game.setState(state)
             keyboardListener.registerPlayerId(playerId)
             keyboardListener.subscribe(game.movePlayer)
-            keyboardListener.subscribe((command) => {
-
-                socket.emit('move-player', command)
-
-            })
 
         })
 
