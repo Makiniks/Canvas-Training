@@ -41,7 +41,11 @@
 
         socket.on('setup', (state) => {
 
+            const playerId = socket.id
+
             game.setState(state)
+            keyboardListener.registerPlayerId(playerId)
+            keyboardListener.subscribe(game.movePlayer)
             console.log('carrega. . .')
 
         })
@@ -50,6 +54,12 @@
 
             console.log(`Receiving ${command.type} -> ${command.playerId}`)
             game.addPlayer(command)
+
+        })
+
+        socket.on('remove-player', (command) => {
+
+            game.removePlayer(command)
 
         })
 
