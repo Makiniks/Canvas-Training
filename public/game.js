@@ -45,6 +45,8 @@ export default function createGame() {
         const playerId = command.playerId
         const playerX = 'playerX' in command ? command.playerX : Math.floor(Math.random = state.screen.width - 1)
         const playerY = 'playerY' in command ? command.playerY : Math.floor(Math.random = state.screen.height - 1)
+        console.log(playerX)
+        console.log(playerY)
 
         state.players[playerId] = {
 
