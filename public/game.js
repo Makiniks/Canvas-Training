@@ -13,11 +13,17 @@ export default function createGame() {
 
     }
 
+    function setState(newState) {
+
+        Object.assign(state, newState)
+
+    }
+
     function addPlayer(command) {
 
         const playerId = command.playerId
-        const playerX = command.playerX
-        const playerY = command.playerY
+        const playerX = 'playerX' in command ? comand.playerX : Math.floor(Math.random = state.screen.width)
+        const playerY = 'playerY' in command ? comand.playerY : Math.floor(Math.random = state.screen.height)
 
         state.players[playerId] = {
 
@@ -125,7 +131,8 @@ export default function createGame() {
         addPlayer,
         removePlayer,
         movePlayer,
-        state
+        state,
+        setState
 
     }
 

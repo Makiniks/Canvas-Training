@@ -16,13 +16,21 @@ game.addFruit({fruitId: 'fruit1', fruitX: 5, fruitY:5})
 
 game.movePlayer({playerId: 'player1', keyPressed: 'ArrowRight'})
 
-console.log(game.state)
-
 sockets.on('connection', (socket) => {
 
     const playerId = socket.id
+    game.addPlayer({playerId: playerId})
 
-    console.log(`Player connected on Server with id: ${playerId}`)
+    console.log(`> Player connected on Server with id: ${playerId}`)
+
+    socket.emit('setup', game.state)
+    socket.on('disconnect', () => {
+
+        game.removePlayer({playerId: playerId})
+
+        console.log(`> Player disconnected: ${playerId}`)
+
+    })
 
 })
 
