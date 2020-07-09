@@ -1,5 +1,5 @@
 export default function renderScreen(screen, game, requestAnimationFrame, currentPlayer) {
-
+    console.log("renderiza!!")
     const ctx = screen.getContext('2d')
 
     ctx.fillStyle = 'white'
