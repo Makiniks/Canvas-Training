@@ -1,4 +1,4 @@
-export default function renderScreen(screen, game, requestAnimationFrame, currentPlayer) {
+export default function renderScreen(screen, game, requestAnimationFrame, currentPlayerId) {
     console.log("renderiza!!")
     const ctx = screen.getContext('2d')
 
@@ -20,7 +20,7 @@ export default function renderScreen(screen, game, requestAnimationFrame, curren
 
     }
 
-    const playerId = game.state.players[currentPlayer]
+    const currentPlayer = game.state.players[currentPlayerId]
 
     if (currentPlayer) {
 
@@ -31,7 +31,7 @@ export default function renderScreen(screen, game, requestAnimationFrame, curren
 
     requestAnimationFrame(() => {
 
-        renderScreen(screen, game, requestAnimationFrame, currentPlayer)
+        renderScreen(screen, game, requestAnimationFrame, currentPlayerId)
 
     })
 
