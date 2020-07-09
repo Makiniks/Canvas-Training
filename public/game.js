@@ -89,8 +89,6 @@ export default function createGame() {
         const fruitId = command ? command.fruitId : Math.floor(Math.random() * 10000000)
         const fruitX = command ? command.fruitX : Math.floor(Math.random() * state.screen.width)
         const fruitY = command ? command.fruitY : Math.floor(Math.random() * state.screen.height)
-        console.log(fruitX)
-        console.log(fruitY)
 
         state.fruits[fruitId] = {
 
