@@ -2,6 +2,8 @@ export default function renderScreen(screen, game, requestAnimationFrame) {
 
     const ctx = screen.getContext('2d')
 
+    console.log(Math.floor(10))
+
     ctx.fillStyle = 'white'
     ctx.clearRect(0, 0, 10, 10)
 
