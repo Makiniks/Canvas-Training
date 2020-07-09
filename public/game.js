@@ -43,8 +43,8 @@ export default function createGame() {
     function addPlayer(command) {
 
         const playerId = command.playerId
-        const playerX = 'playerX' in command ? command.playerX : Math.floor(Math.random = state.screen.width - 1)
-        const playerY = 'playerY' in command ? command.playerY : Math.floor(Math.random = state.screen.height - 1)
+        const playerX = 'playerX' in command ? command.playerX : Math.floor(Math.random() * state.screen.width)
+        const playerY = 'playerY' in command ? command.playerY : Math.floor(Math.random() * state.screen.height)
 
         state.players[playerId] = {
 
